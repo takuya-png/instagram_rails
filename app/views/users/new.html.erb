@@ -1,2 +1,20 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<div class="users_h1_box"><h1>Instagram Clone へようこそ！</h1></div>
+<%= render 'form' %>
+<div class="login">
+  <div class="login-triangle"></div>
+  <h2 class="login-header">Log in</h2>
+  <%= form_with(model: @user, local: true ) do |f| %>
+    <form class="login-container">
+      <%= f.label "お名前：" %>
+      <%= f.text_field :name %>
+      <%= f.label "メールアドレス：" %>
+      <%= f.text_field :email %>
+      <%= f.label "パスワード："  %>
+      <%= f.password_field :password %>
+      <%= f.label "パスワード確認："  %>
+      <%= f.password_field :password_confirmation %>
+      <%= f.submit "アカウント作成" %>
+    </form>
+    <% end %>
+</div> 
+<%= link_to "戻る", users_path%>
