@@ -16,8 +16,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to user_path(@user.id), notice: "投稿できました！"
+    if @user.update(user_edit_params)
+      redirect_to user_path, notice: "ユーザ情報を編集しました！"
     else
       render :edit
     end
@@ -27,10 +27,21 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if @user.id != current_user.id
+      redirect_to user_path(current_user.id)
+    end
   end
 
   private
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def user_edit_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :image_cache)
   end
 end
