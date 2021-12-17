@@ -1,4 +1,10 @@
-<div class="users_h1_box"><h1>編集画面</h1></div>
-  <%= render 'form' %>
-<%= link_to '詳細', @picture %> |
-<%= link_to '戻る', pictures_path %>
+<h1 class="insta_f2 text-center">Editing Picture</h1>
+
+<%= render 'form', picture: @picture %>
+
+<div class="text-center picture_show bottom_btn_block">
+  <% if @picture.user_id == current_user.id %>
+    <span class="material-icons">important_devices</span><%= link_to 'Show', @picture %>  |
+  <% end %>
+    <span class="material-icons">reply</span><%= link_to 'Back', pictures_path %>
+</div>
